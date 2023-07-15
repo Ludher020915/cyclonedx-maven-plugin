@@ -22,5 +22,25 @@ pipeline {
         sh 'mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom'
       }
     }
+
+    stage('Import SBOM file on the service') {
+      steps {
+        script {
+          sh """
+          curl --request POST \\
+              --url https://de-vsm.leanix.net/services/vsm/discovery/v1/service \\
+              --header 'accept: */*' \\
+              --header 'content-type: multipart/form-data' \\
+              --form id=Github-token \\
+              --form sourceType=my-alerting-solution \\
+              --form sourceInstance=LeanIX GmbH \\
+              --form name=my-service \\
+              --form 'description=The one and only service with 110% uptime' \\
+              --form 'data={"number_of_incidents":"2","monitoring_dashboard":"https://my-company.my-alerting-solution.com/my-service"}' \\
+              --form "bom=@/var/lib/jenkins/workspace/Jenkinsfile-git-and-maven/target/bom.xml"
+          """
+        }
+      }
+    }
   }
 }
