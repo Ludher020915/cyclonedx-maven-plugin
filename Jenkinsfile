@@ -33,8 +33,8 @@ pipeline {
                         --header 'content-type: multipart/form-data' \
                         --form id=LEANIX_CREDENTIALS \
                         --form sourceType=my-alerting-solution \
-                        --form sourceInstance=LeanIX GmbH  \
-                        --form name=my-service \
+                        --form sourceInstance=LeanIX \
+                        --form name=my-service1 \
                         --form 'description=The one and only service with 110% uptime' \
                         --form "bom=@/var/lib/jenkins/workspace/Jenkinsfile-git-and-maven/target/bom.json"
                     """
