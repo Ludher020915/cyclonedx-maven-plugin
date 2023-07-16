@@ -35,7 +35,7 @@ pipeline {
                         --form sourceType=my-alerting-solution \
                         --form sourceInstance=LeanIX \
                         --form name=my-service1 \
-                        --form 'description=The one and only service with 110% uptime' \
+                        --form 'description=The one and only service with 100% uptime' \
                         --form "bom=@/var/lib/jenkins/workspace/Jenkinsfile-git-and-maven/target/bom.json"
                     """
                 }
